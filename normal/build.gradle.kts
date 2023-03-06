@@ -1,7 +1,7 @@
 plugins {
     id("java-gradle-plugin")
     kotlin("jvm") version "1.8.0"
-    id("groovy")
+//    id("groovy")
 }
 repositories {
     google()
@@ -20,6 +20,14 @@ gradlePlugin {
         register("normalPlugin") {
             id = "com.yly.normalPlugin"
             implementationClass = "com.example.normal.gitmanifest.ExamplePlugin"
+        }
+        register("extensionPlugin") {
+            id = "com.yly.extensionPlugin"
+            implementationClass = "com.example.normal.extension.ExamplePlugin"
+        }
+        register("lifecyclePlugin") {
+            id = "com.yly.lifecyclePlugin"
+            implementationClass = "com.example.normal.lifecycle.ExamplePlugin"
         }
     }
 }

@@ -1,4 +1,4 @@
-import org.jetbrains.kotlin.gradle.dsl.KotlinCompile
+import com.example.normal.extension.BuildTypeExtension
 
 plugins {
     id 'com.android.application'
@@ -6,6 +6,7 @@ plugins {
     id 'kotlin-kapt'
 //    id 'com.yly.plugin'
     id 'com.yly.normalPlugin'
+    id 'com.yly.extensionPlugin'
 }
 
 
@@ -28,6 +29,13 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+
+        debug {
+            exampleDsl {
+                invocationParameters = "-debug -log"
+            }
+//            the<BuildTypeExtension>().invocationParameters = "-debug -log"
         }
     }
     kotlinOptions {
