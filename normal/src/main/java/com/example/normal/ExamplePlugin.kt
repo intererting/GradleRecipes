@@ -1,4 +1,5 @@
-package getApksTest/*
+package com.example.normal
+/*
  * Copyright (C) 2019 The Android Open Source Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -33,8 +34,7 @@ abstract class ExamplePlugin : Plugin<Project> {
 
         androidComponents.onVariants { variant ->
             project.tasks.register(
-                variant.name + "ManifestProducer",
-                ManifestProducerTask::class.java
+                variant.name + "ManifestProducer", ManifestProducerTask::class.java
             ) {
                 it.gitInfoFile.set(gitVersionProvider.flatMap(GitVersionTask::gitVersionOutputFile))
                 it.outputManifest.set(

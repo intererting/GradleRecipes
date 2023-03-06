@@ -43,7 +43,7 @@ afterEvaluate {
 //    }
 }
 
-//tasks.withType(com.android.build.gradle.tasks.GenerateBuildConfig::class.java) {
+//tasks.withType(com.android.build.gradle.kts.tasks.GenerateBuildConfig::class.java) {
 //    dependsOn(gitVersionProvider)
 //    doLast {
 //        val androidExtension: BaseAppModuleExtension =

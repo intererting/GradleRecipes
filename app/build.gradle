@@ -1,12 +1,13 @@
-import com.android.build.api.variant.ApplicationVariant
-
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
     id 'kotlin-kapt'
+//    id 'com.yly.plugin'
+    id 'com.yly.normalPlugin'
 }
 
-apply from: './gradles/git_version.gradle.kts'
+
+//apply from: './gradles/git_version.gradle.kts'
 
 android {
     compileSdk 33
@@ -35,9 +36,6 @@ android {
         targetCompatibility JavaVersion.VERSION_11
     }
 
-//    applicationVariants.all { ApplicationVariant variant ->
-//        println variant.name
-//    }
 }
 
 dependencies {
@@ -48,5 +46,5 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
 }
