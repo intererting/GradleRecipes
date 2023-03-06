@@ -1,6 +1,7 @@
 plugins {
     id("java-gradle-plugin")
     kotlin("jvm") version "1.8.0"
+    id("groovy")
 }
 repositories {
     google()
@@ -11,6 +12,7 @@ dependencies {
     implementation("com.android.tools.build:gradle:7.4.2")
     implementation("org.jetbrains.kotlin:kotlin-gradle-plugin:1.8.0")
     implementation("org.jetbrains.kotlin:kotlin-stdlib:1.8.0")
+//    implementation("org.jetbrains.kotlin:kotlin-compiler:1.8.0")
 }
 
 gradlePlugin {

@@ -27,7 +27,9 @@ abstract class ExamplePlugin : Plugin<Project> {
                 it.gitVersionOutputFile.set(
                     File(project.buildDir, "intermediates/gitVersionProvider/output")
                 )
-                it.outputs.upToDateWhen { false }
+                it.outputs.upToDateWhen {
+                    false
+                }
             }
 
         val androidComponents = project.extensions.getByType(AndroidComponentsExtension::class.java)
