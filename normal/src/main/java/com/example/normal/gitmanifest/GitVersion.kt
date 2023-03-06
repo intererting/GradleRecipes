@@ -1,4 +1,4 @@
-package com.example.normal
+package com.example.normal.gitmanifest
 /*
  * Copyright (C) 2019 The Android Open Source Project
  *

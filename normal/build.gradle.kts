@@ -19,7 +19,7 @@ gradlePlugin {
     plugins {
         register("normalPlugin") {
             id = "com.yly.normalPlugin"
-            implementationClass = "com.example.normal.ExamplePlugin"
+            implementationClass = "com.example.normal.gitmanifest.ExamplePlugin"
         }
     }
 }
