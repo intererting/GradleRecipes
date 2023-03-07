@@ -15,37 +15,38 @@
  */
 package com.example.normal.extension
 
-import org.gradle.api.Plugin
-import org.gradle.api.Project
-import org.gradle.api.plugins.ExtensionAware
-import java.io.File
 import com.android.build.api.dsl.ApplicationExtension
 import com.android.build.api.variant.AndroidComponentsExtension
+import org.gradle.api.Plugin
+import org.gradle.api.Project
 
-abstract class ExamplePlugin : Plugin<Project> {
+@Suppress("UnstableApiUsage")
+abstract class ProviderPlugin : Plugin<Project> {
 
     override fun apply(project: Project) {
-        // attach the BuildTypeExtension to each elements returned by the
-        // android buildTypes API.
+        val objects = project.getObjects();
+
         val android = project.extensions.getByType(ApplicationExtension::class.java)
         android.buildTypes.forEach {
-            (it as ExtensionAware).extensions.add(
+            it.extensions.add(
                 "exampleDsl", BuildTypeExtension::class.java
             )
         }
 
         val androidComponents = project.extensions.getByType(AndroidComponentsExtension::class.java)
-        // hook up task configuration on the variant API.
-        androidComponents.onVariants { variant ->
-            // get the associated DSL BuildType element from the variant name
-            val buildTypeDsl = android.buildTypes.getByName(variant.name)
-            // find the extension on that DSL element.
-            val buildTypeExtension =
-                (buildTypeDsl as ExtensionAware).extensions.findByName("exampleDsl") as BuildTypeExtension
-            // create and configure the Task using the extension DSL values.
-            project.tasks.register(variant.name + "Example", ExampleTask::class.java) { task ->
-                task.parameters.set(buildTypeExtension.invocationParameters ?: "")
-            }
+        androidComponents.beforeVariants { variantBuilder ->
+            val variantExtension = objects.newInstance(VariantExtension::class.java)
+
+            val debug = android.buildTypes.getByName(variantBuilder.name)
+            val buildTypeExtension = debug.extensions.findByName("exampleDsl") as BuildTypeExtension
+            variantExtension.parameters.set(
+                buildTypeExtension.invocationParameters ?: ""
+            )
+
+            //动态注册extension和值
+            variantBuilder.registerExtension(
+                VariantExtension::class.java, variantExtension
+            )
         }
     }
 }

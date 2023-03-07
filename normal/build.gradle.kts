@@ -21,9 +21,13 @@ gradlePlugin {
             id = "com.yly.normalPlugin"
             implementationClass = "com.example.normal.gitmanifest.ExamplePlugin"
         }
-        register("extensionPlugin") {
-            id = "com.yly.extensionPlugin"
-            implementationClass = "com.example.normal.extension.ExamplePlugin"
+        register("providerPlugin") {
+            id = "com.yly.providerPlugin"
+            implementationClass = "com.example.normal.extension.ProviderPlugin"
+        }
+        register("consumerPlugin") {
+            id = "com.yly.consumerPlugin"
+            implementationClass = "com.example.normal.extension.ConsumerPlugin"
         }
         register("lifecyclePlugin") {
             id = "com.yly.lifecyclePlugin"

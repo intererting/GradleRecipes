@@ -1,6 +1,8 @@
 package com.example.normal.lifecycle
 
 import com.android.build.api.variant.AndroidComponentsExtension
+import com.android.build.api.variant.VariantExtension
+import com.example.normal.extension.ExampleTask
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 
@@ -17,6 +19,16 @@ class ExamplePlugin : Plugin<Project> {
             extension.buildTypes.create("extra").let {
                 it.isMinifyEnabled = false
             }
+        }
+
+        androidComponents.onVariants { variant ->
+//            project.tasks.register(
+//                variant.name + "onVariantsExample", ExampleTask::class.java
+//            ) { task ->
+//                task.parameters.set(
+//                    variant.getExtension(VariantExtension::class.java)?.parameters
+//                )
+//            }
         }
     }
 }

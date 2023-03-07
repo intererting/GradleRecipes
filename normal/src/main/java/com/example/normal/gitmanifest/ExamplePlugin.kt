@@ -14,6 +14,7 @@ package com.example.normal.gitmanifest
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+import com.android.build.api.artifact.SingleArtifact
 import com.android.build.api.variant.AndroidComponentsExtension
 import org.gradle.api.Plugin
 import org.gradle.api.Project
@@ -35,13 +36,21 @@ abstract class ExamplePlugin : Plugin<Project> {
         val androidComponents = project.extensions.getByType(AndroidComponentsExtension::class.java)
 
         androidComponents.onVariants { variant ->
-            project.tasks.register(
+            val manifestProducer = project.tasks.register(
                 variant.name + "ManifestProducer", ManifestProducerTask::class.java
             ) {
                 it.gitInfoFile.set(gitVersionProvider.flatMap(GitVersionTask::gitVersionOutputFile))
                 it.outputManifest.set(
                     File(project.buildDir, "intermediates/gitVersionProvider/output")
                 )
+            }
+
+            variant.artifacts.use(manifestProducer).wiredWith(ManifestProducerTask::outputManifest)
+                .toCreate(SingleArtifact.MERGED_MANIFEST)
+
+            project.tasks.register(variant.name + "Verifier", VerifyManifestTask::class.java) {
+                it.apkFolder.set(variant.artifacts.get(SingleArtifact.APK))
+                it.builtArtifactsLoader.set(variant.artifacts.getBuiltArtifactsLoader())
             }
         }
     }

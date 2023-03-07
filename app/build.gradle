@@ -6,7 +6,8 @@ plugins {
     id 'kotlin-kapt'
 //    id 'com.yly.plugin'
     id 'com.yly.normalPlugin'
-    id 'com.yly.extensionPlugin'
+    id "com.yly.providerPlugin"
+    id "com.yly.consumerPlugin"
 }
 
 
