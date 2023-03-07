@@ -8,6 +8,7 @@ plugins {
     id 'com.yly.normalPlugin'
     id "com.yly.providerPlugin"
     id "com.yly.consumerPlugin"
+    id "com.yly.copyApkPlugin"
 }
 
 

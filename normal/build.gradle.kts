@@ -12,6 +12,7 @@ dependencies {
     implementation("com.android.tools.build:gradle:7.4.2")
     implementation("org.jetbrains.kotlin:kotlin-gradle-plugin:1.8.0")
     implementation("org.jetbrains.kotlin:kotlin-stdlib:1.8.0")
+    implementation("org.ow2.asm:asm-util:9.2")
 //    implementation("org.jetbrains.kotlin:kotlin-compiler:1.8.0")
 }
 
@@ -32,6 +33,10 @@ gradlePlugin {
         register("lifecyclePlugin") {
             id = "com.yly.lifecyclePlugin"
             implementationClass = "com.example.normal.lifecycle.ExamplePlugin"
+        }
+        register("copyApkPlugin") {
+            id = "com.yly.copyApkPlugin"
+            implementationClass = "com.example.normal.apk.ExamplePlugin"
         }
     }
 }
